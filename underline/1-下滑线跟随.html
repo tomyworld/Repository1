@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+                float: left;
+                list-style: none;
+                padding: 0 20px;
+                position: relative;
+			}
+			li:hover{
+                transform: 1s all linear;
+			}
+			li::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 100%;
+                width: 0;
+                height: 100%;
+                border-bottom: 2px solid #000;
+                transition: 0.2s all linear;
+            }
+
+            li:hover::before {
+                width: 100%;
+                left: 0;
+            }
+
+            li:hover ~ li::before {
+                left: 0;
+            }
+		</style>
+	</head>
+	<body>
+		<ul class="clear">
+            <li>不可思议的CSS</li>
+            <li>导航栏</li>
+            <li>光标小下划线跟随</li>
+            <li>PURE CSS</li>
+            <li>Nav Underline</li>
+        </ul>
+	</body>
+</html>
