@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜magnifie</title>
+    <style>
+        #small{
+            position: relative;
+            width: 210px;
+            height: 210px;
+            float: left;
+            margin-top: 50px;
+        }
+        #small img{
+            width: 210px;
+            height: 210px;
+            border: 1px solid #f00;
+            position: absolute;
+        }
+        #small_show{
+            width: 105px;
+            height: 105px;
+            background:gray;
+            opacity: 0.3;
+            position: absolute;
+            display: none;
+            left: 0px;
+            top: 0px;
+        }
+        #bigarea{
+            width: 420px;
+            height: 420px;
+            float: left;
+            border: 2px solid #000000;
+            overflow: hidden;
+            position: relative;
+            margin-left: 20px;
+            display: none;
+            margin-top: 50px;
+        }
+        #bigimg{
+            width: 840px;
+            height: 840px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+    <body>
+        <div id="small">
+            <img src="images/pic.jpg">
+            <div id="small_show"></div>
+        </div>
+        <div id="bigarea">
+            <img src="images/pic.jpg" id="bigimg">
+        </div>
+    </body>
+</html>
+<script>
+    //获取所有用到节点
+    var small = document.getElementById("small");
+    var small_show = document.getElementById("small_show");
+    var bigimg = document.getElementById("bigimg");
+
+    small.onmousemove = function (e) {
+        e = e || evevt;
+
+        //移入显示放大镜视图【默认不显示】
+        bigarea.style.display = "block";
+        small_show.style.display = "block";
+
+        var scale =bigimg.offsetWidth /small.offsetWidth;  //放大倍数
+        var x = e.pageX - small.offsetLeft - small_show.offsetWidth/2;
+        var y = e.pageY - small.offsetTop - small_show.offsetHeight/2;
+
+        //控制边界
+        if (x<0) {
+            x = 0;
+        }else if (x>small.offsetWidth-small_show.offsetWidth) {
+            x = small.offsetWidth-small_show.offsetWidth;
+        }
+        if (y<02) {
+            y = 0;
+        }else if (y>small.offsetHeight-small_show.offsetHeight) {
+            y = small.offsetHeight-small_show.offsetHeight;
+        }
+
+        small_show.style.left = x + "px";
+        small_show.style.top = y + "px";
+        bigimg.style.left = -x*scale + "px";
+        bigimg.style.top = -y*scale + "px";
+    }
+
+</script>
