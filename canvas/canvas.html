@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        #box{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+        }
+        canvas{
+            border: 1px solid #f00;
+        }
+        #img1{
+            border: 1px solid #cccccc;
+            width: 40px;
+            height: 40px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <canvas height="400" width="400" id="myCanvas">低版本无法识别</canvas>
+    </div>
+    <button id="btn">清除</button>
+    <button id="save">保存</button>
+    <hr>
+    <img src="" id="img1"/>
+</body>
+</html>
+<script>
+    var myCanvas = document.getElementById("myCanvas");
+    var btn = document.getElementById("btn");
+    var save = document.getElementById("save");
+    var img1 = document.getElementById("img1");
+
+    var ctx = myCanvas.getContext("2d");
+    box.onmousedown = function (e) {
+        e = e || event;
+        ctx.beginPath();
+        box.onmousemove = function (e) {
+            e = e || event;
+            var x = e.clientX;
+            var y = e.clientY;
+            console.log(x);
+            ctx.lineTo(x,y);
+            ctx.stroke();
+        }
+    }
+    box.onmouseup = function () {
+        box.onmousemove = null;
+    }
+    
+    btn.onclick=function () {
+        ctx.clearRect(0,0,400,400);
+        img1.src = "";
+        img1.style.display = "none";
+    }
+    save.onclick = function () {
+        img1.style.display = "block";
+        var imgStr = myCanvas.toDataURL("image/png"); //调用toDataURL的是画布节点本身myCanvas
+        img1.src = imgStr;
+    }
+</script>
