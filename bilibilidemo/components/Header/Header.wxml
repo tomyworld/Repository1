@@ -1,0 +1,13 @@
+<!--components/Header/Header.wxml-->
+<view class="header">
+  <navigator class="logo">
+    <image src="/icon/logo2.png"></image>
+  </navigator> 
+  <navigator class="search">
+    <image src="/icon/search.png"></image>
+  </navigator> 
+  <navigator class="user">
+    <image src="/icon/user.png"></image>
+  </navigator> 
+  <button class="down">下载APP</button>
+</view>

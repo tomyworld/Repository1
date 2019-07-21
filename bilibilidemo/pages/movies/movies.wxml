@@ -1,0 +1,39 @@
+<view id="main">
+  <Header></Header>
+  <video src='cloud://text-mxp67.7465-text-mxp67/【李彦宏】病名为problem - 1.【李彦宏】病名为problem(Av58042532,P1).mp4' controls object-fit="fill" vslide-gesture	="true"></video>
+  <view class="otherList" wx:for="{{othersList}}" wx:key="{{index}}">
+    <navigator class="item_other" url="../movies/movies?id={{item.id}}">
+      <view class="item_image_wrap">
+        <image src="{{item.imgSrc}}" mode="widthFix"></image>
+      </view>
+      <view class="other_info">
+        <view class="other-title">{{item.title}}</view>
+        <view class="other-detail">
+          <text class="play_count">{{item.playMsg}}次观看</text>
+          <text class="comment_count">{{item.commentCount}}条弹幕</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class="comment-wrap">
+      <view class="comment-title">
+        评论( {{commentData.commentTotalCount}} )
+      </view>
+      <view class="comment-list">
+        <view class="comment-item" wx:for="{{commentData.commentList}}" wx:key="{{index}}">
+          <view class="comment-user">
+            <image src="{{item.userIconSrc}}" mode="widthFix"></image>
+          </view>
+          <view class="comment-info">
+            <view class="comment-detail">
+              <text class="author">{{item.username}}</text>
+              <text class="date">{{item.commentDate}}</text>
+            </view>
+            <view class="comment-content">
+              {{item.commentInfo}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

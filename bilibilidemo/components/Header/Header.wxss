@@ -1,0 +1,43 @@
+/* components/Header/Header.wxss */
+.header{
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+}
+.search,.user,.down{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo{
+  flex: 7;
+}
+.logo image{
+  width: 140rpx;
+  height: 60rpx;
+}
+.search{
+  flex: 1;
+}
+.search image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.user{
+  flex: 2;
+} 
+.user image{
+  width: 54rpx;
+  height: 60rpx;
+}
+.down{
+ flex: 3;
+ height: 60rpx;
+ font-size: 30rpx;
+ background-color: pink;
+ color: #fff;
+ border-radius: 10rpx;
+ padding: 10rpx;
+
+}
+
