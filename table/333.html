@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            table {
+            margin: 100px auto;
+            width: 900px;
+            height: 400px;
+            border-left: 1px solid #000; 
+            border-top: 1px solid #000; 
+            border-spacing: 0;
+            text-align: center;
+            }
+            table tr td{
+                border-bottom: 1px solid #000;
+                border-right: 1px solid #000;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <table id="tab">
+            <tr id="tr1">
+                <td>1</td><td>2</td><td>2</td><td>5</td><td>5</td><td>5</td><td>8</td><td>8</td><td>8</td>
+            </tr>
+            <tr>
+                <td>1</td><td>1</td><td>1</td><td>4</td><td>4</td><td>4</td><td>9</td><td>9</td><td>9</td>
+            </tr>
+            <tr>
+                <td>1</td><td>2</td><td>2</td><td>4</td><td>5</td><td>5</td><td>5</td><td>8</td><td>9</td>
+            </tr>
+        </table>
+    </body>
+</html>
+<script>
+    var tr1 = document.getElementById("tr1") ;
+    var tds = tr1.getElementsByTagName("td");
+    var arr = [];
+    for(var i=0;i<tds.length;i++){
+        tds[i].num = 1;
+        for(var j=0;j<tds.length-1;j++){
+            if(tds[j].innerHTML == tds[j+1].innerHTML){
+                tds[j+1].num += tds[j].num +1
+                tds[j].num=0;
+            }
+        }
+        arr.push(tds[i].num)
+    }
+    console.log(arr);
+
+    for(var n=0;n<arr.length;n++){
+        if(arr[n]>1){
+            var mount =n+1- arr[n];
+            // console.log(mount);
+            tr1.cells[mount].setAttribute('colspan', arr[n]);
+            tr1.cells[mount+arr[n]-1].style.display = "none";
+        }
+        if(arr[n]==0){
+            // console.log(arr[n]);
+            tr1.cells[n+1].style.display = "none";
+        }
+    }
+</script>
+ 
