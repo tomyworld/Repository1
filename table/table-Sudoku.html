@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>九宫格</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #box{
+            width: 604px;
+            height: 304px;
+            margin: 100px auto;
+        }
+        #list{
+            display: flex;
+            flex-wrap:wrap;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+        }
+        #list li{
+            width: 200px;
+            height: 100px;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 100px;
+            text-align: center;
+            border-bottom: 1px solid #000;
+            border-right: 1px solid #000;
+            list-style: none;
+        }
+        #box1{
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            margin: -100px 0 0 -150px;
+            text-align: center;
+            line-height: 80px;
+            background: #ccc;
+            display: none;
+        }
+        #box1 p{
+            margin-top: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #totle{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="list">
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">111</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">222</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">333</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">444</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">555</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">666</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">777</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">888</li>
+            <li draggable="true" ondragstart="drap(event,this)" ondragover="allowdrap(event)" ondrop="drop(event,this)">999</li>
+        </ul>
+        <button id="totle">汇总</button>
+    </div>
+    
+    <div id="box1">
+        <p></p>
+        <button id="btn">确定</button>
+    </div>
+</body>
+</html>
+<script>
+    var list = document.getElementById("list");
+    var box1 = document.getElementById("box1");
+    var btn = document.getElementById("btn");
+    var totle = document.getElementById("totle");
+    var pNode = box1.getElementsByTagName("p")[0];
+    var ali = list.getElementsByTagName("li");
+    console.log(ali);
+    for(let i=0;i<ali.length;i++){
+        ali[i].onclick = function(){
+            pNode.innerHTML = this.innerHTML
+            box1.style.display = "block";
+        }
+    }
+    btn.onclick = function(){
+        box1.style.display = "none";
+    }
+    totle.onclick = function(){
+        var str = "";
+        for(var i =0;i<ali.length;i++){
+            str += ali[i].innerHTML + "-"
+        }
+        console.log(str);
+        pNode.innerHTML = str;
+        box1.style.display = "block";
+    }
+    var srcel = null;
+    function drap(e,el){
+        e = e||event;
+        srcel = el;
+        e.dataTransfer.setData("text/html", el.innerHTML);
+    }
+    function allowdrap(e){
+        e = e||event;
+        e.preventDefault();
+    }
+    function drop(e,el){
+        e = e||event;
+        e.preventDefault();
+        if(el != srcel){
+            srcel.innerHTML = el.innerHTML;
+            el.innerHTML = e.dataTransfer.getData("text/html");
+        }
+    }
+</script>
+
+
