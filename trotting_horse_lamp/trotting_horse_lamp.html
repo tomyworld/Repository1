@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>走马灯</title>
+        <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #box p{
+            color: blue;
+            margin-left: 100px;
+        }
+        #btn{
+            margin-left: 100px; 
+        }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>人员不断更换，就像走马灯似的。</p>
+        </div>
+        <button id="btn">开始</button>
+        <button id="btn1">暂停</button>
+    </body>
+</html>
+<script>
+    var box = document.getElementById("box");
+    var btn = document.getElementById("btn");
+    var btn1 = document.getElementById("btn1");
+    var pNode = box.querySelector("p");
+    var timer
+    
+    btn.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            var str = pNode.innerHTML;
+            var arr = str.split("");
+            var first = arr.shift();
+            arr.push(first);
+            pNode.innerHTML = arr.join("");
+        },200);
+    }
+    btn1.onclick = function(){
+        clearInterval(timer);
+    }
+</script>
