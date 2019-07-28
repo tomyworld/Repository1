@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据分组</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>将数据分组，如8个一组</h1>
+</body>
+</html>
+<script>
+    var data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];  //原始数据
+    function split (data){
+        var data = data;
+        const arr = [];   //保存分组后的数据组
+        let minarr = [];  //数据分成的每个小组
+        data.forEach(n => {    //原始数据遍历 
+            if(minarr.length == 8){   //如果有小组数量满了 数组为空
+                minarr = [];
+            }
+            if(minarr.length == 0){   //小组中没有数据 就将小组添加进数据组 【流程：先将空数组加进大数组 再往小数组添加数据】
+                arr.push(minarr);
+            }
+            minarr.push(n);
+            });
+            console.log(arr); //[ [1, 2, 3, 4, 5, 6, 7, 8],[9, 10, 11, 12, 13, 14, 15, 16],[17, 18] ]  分成了3组 组后一组不满
+    }
+    split(data);
+</script>
