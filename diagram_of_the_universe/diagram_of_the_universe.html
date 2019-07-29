@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>太极图</title>
+        <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ccc;
+        }
+        #box{
+          width: 100px;
+          height: 100px;
+          background: #f00;
+          margin: 100px auto;
+          border-radius: 50%;
+          background: linear-gradient(to right,black 50%,white 50%);
+          position: relative;
+          animation: to 5s infinite  ease-in-out;
+        }
+        .left,.right{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 25px;
+            border-radius:50%; 
+            animation: go 1s infinite alternate ease-in-out;
+        }
+        .left{
+            background:radial-gradient(white 25%,black 25%);
+            transform-origin: 50% 0;
+            
+        }
+        .right{
+            background:radial-gradient(black 25%,white 25%);
+            transform-origin: 50% 100%;
+            animation-delay: -1s;
+            top:50px;
+        }
+        @keyframes go{
+            from{ transform: scale(0.5);}
+            to{transform: scale(1.5);}
+        }
+        @keyframes to{
+            from{transform: rotate(0)}
+            to{transform: rotate(360deg)}
+        }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+    </body>
+</html>
