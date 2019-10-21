@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>微信公众号图片不能引用</title>
+</head>
+  <body>
+      
+  </body>
+</html>
+<script>
+  // 微信公众号的图片不能引用 可以通过微信旗下的搜狗间接使用  在图片地址前面加上  http://img01.store.sogou.com/net/a/04/link?appid=100520029&url=
+  // 在加上  <meta name="referrer" content="never">
+  if(htmlNode.indexOf('https://mmbiz.qpic.cn/') != -1){
+        that.htmlData = htmlNode.replace(/https:\/\/mmbiz.qpic.cn/g,'http://img01.store.sogou.com/net/a/04/link?appid=100520029&url=https://mmbiz.qpic.cn')
+      }else{
+      }
+</script>
+
+
+<!-- 
+  vue不能给全部页面加meta  可以引入组件  给单独页面添加该meta
+  import Meta from 'vue-meta'     //给单页组件设置meta属性  解决微信图片问题
+  Vue.use(Meta)
+
+
+  metaInfo: {      //给单页组件设置meta属性  解决微信图片问题
+          meta: [   //<meta name="referrer" content="never">
+                { name: 'referrer', content: 'never' }
+              ]
+        },
+ -->
