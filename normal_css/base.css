@@ -119,3 +119,8 @@ html {
     ins {
     text-decoration:none;
     }
+
+
+
+    /* 万能清除浮动法 */
+    /* .clear：after{content:”.”; display:block; clear:both; height:0; overflow:hidden; visibility:hidden; }  */
