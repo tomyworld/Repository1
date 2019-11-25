@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 这里使远程地址 -->
+  <title>vue-simple</title>
+</head>
+
+<body>
+  <div id="box">
+    {{msg}}
+    <br>
+    {{obj.msg}}
+    <br>
+    <span>{{msg}}</span>
+  </div>
+</body>
+</html>
+<script>
+  //实例化vue
+  var app = new Vue({
+    el: "#box",   /*渲染的模板id*/
+    data: {   /*vue业务逻辑里面的数据*/
+      msg: '你好',
+      obj: {
+        msg: '这是一个msg'
+      }
+    }
+  })
+
+</script>
+
+</html>
