@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扇形导航</title>
+    <style>
+        html{
+            height:100%;
+            overflow:hidden;
+        }
+        body{
+            background:#f9f9f9;
+        }
+        #menu{
+            width:50px;
+            height:50px;
+            position:fixed;
+            right:20px;
+            bottom:20px;
+        }
+        #menu_list{
+            height:42px;
+            width:42px;
+            position:relative;
+            margin:4px;
+        }
+        #menu_list img{
+            border-radius:50%;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        #home{
+            width:50px;
+            height:50px;
+            background:black;
+            border-radius:25px;
+            position:absolute;
+            z-index: 1;
+            left:0;
+            top:0;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <div id="menu_list">
+            <img src="images/icon05.jpg" alt="" style="background: black;height: 42px;width:  42px;"/>
+            <img src="images/icon05.jpg" alt="" style="background: black;height: 42px;width:  42px;"/>
+            <img src="images/icon05.jpg" alt="" style="background: black;height: 42px;width:  42px;"/>
+            <img src="images/icon05.jpg" alt="" style="background: black;height: 42px;width:  42px;"/>
+            <img src="images/icon05.jpg" alt="" style="background: black;height: 42px;width:  42px;"/>
+        </div>
+        <div id="home"></div>
+    </div>
+</body>
+<script>
+    // window.οnlοad = function () {
+        var oHome = document.getElementById("home");
+        var aImg = document.getElementById("menu_list").getElementsByTagName("img");
+        var iRadius=-150;
+        var onOff = true;
+        console.log(oHome)
+        for(var i = 0; i< aImg.length;i++){
+            console.log(i)
+            aImg[i].onclick= function () {
+                this.style.transition="0.3s";
+                this.style.WebkitTransform="scale(2) rotate(-720deg)";
+                this.style.opacity=0.1;
+                addEnd(this,end);
+            };
+        };
+        function  end(){
+            this.style.transition="0.1s";
+            this.style.WebkitTransform="scale(1) rotate(-720deg)";
+            this.style.opacity=1;
+            removeEnd(this,end);
+        };
+        oHome.onclick = function(){
+            if (onOff){
+                this.style.webkitTransform="rotate(-360deg)";
+                for(var i = 0; i< aImg.length; i ++){
+                    var oLt = getTL(iRadius,90/4*i);
+                    aImg[i].style.transition="0.5s+"+i*100+"ms";
+                    aImg[i].style.left = oLt.oLeft+"px";
+                    aImg[i].style.top = oLt.oTop+"px";
+                    aImg[i].style.webkitTransform="scale(1) rotate(-720deg)";
+                }
+ 
+            }else{
+                this.style.webkitTransform="rotate(360deg)";
+                for(var i = 0; i< aImg.length; i ++){
+                    aImg[i].style.transition="0.5s+"+(aImg.length-i+1)*100+"ms";
+                    aImg[i].style.left = 0+"px";
+                    aImg[i].style.top = 0+"px";
+                    aImg[i].style.webkitTransform="scale(1) rotate(0deg)";
+                }
+            }
+            onOff=!onOff;
+        };
+ 
+        function getTL(iRadius,iDeg){
+            var oLeft = Math.round(Math.sin(iDeg/180*Math.PI)*iRadius);
+            var oTop = Math.round(Math.cos(iDeg/180*Math.PI)*iRadius);
+            return {oLeft:oLeft,oTop:oTop};
+        };
+ 
+        function addEnd(obj,fn){
+            obj.addEventListener("WebkitTransitionEnd",fn,false);
+            obj.addEventListener("transitionend",fn,false);
+        };
+        function removeEnd(obj,fn){
+            obj.removeEventListener("WebkitTransitionEnd",fn,false);
+            obj.removeEventListener("transitionend",fn,false);
+        };
+    // };
+</script>
+</html>
